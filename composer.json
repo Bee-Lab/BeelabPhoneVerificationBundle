@@ -22,7 +22,7 @@
         "phpunit/phpunit": "4.*"
     },
     "suggest": {
-        "zen/skebby": "Skebby adapter"
+        "zen/skebby-bundle": "For Skebby adapter"
     },
     "autoload": {
         "psr-4": { "Beelab\\PhoneVerificationBundle\\": "" }
