@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="beelab_phone_verification.adapter.skebby" class="Beelab\PhoneVerificationBundle\SMS\Adapter\SkebbyAdapter" abstract="true" public="false">
+            <argument />
+        </service>
+        <service id="beelab_phone_verification.constraint.code" class="Beelab\PhoneVerificationBundle\Validator\Constraints\CodeValidator">
+            <argument type="service" id="beelab_phone_verification.manager.phone" />
+            <tag name="validator.constraint_validator" alias="beelab_verify_code" />
+        </service>
+        <service id="beelab_phone_verification.form_type.code" class="%beelab_phone_verification.code_form_type%">
+            <tag name="form.type" alias="beelab_verify_code" />
+        </service>
+        <service id="beelab_phone_verification.form_type.phone" class="%beelab_phone_verification.phone_form_type%">
+            <tag name="form.type" alias="beelab_verify_phone" />
+        </service>
+        <service id="beelab_phone_verification.manager.phone" class="%beelab_phone_verification.manager.phone_class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%beelab_phone_verification.phone_class%</argument>
+        </service>
+        <service id="beelab_phone_verification.sender" class="Beelab\PhoneVerificationBundle\SMS\Sender">
+            <argument />
+        </service>
+        <service id="beelab_phone_verification.twig.extension" class="Beelab\PhoneVerificationBundle\Twig\BeelabPhoneVerificationTwigExtension" public="false">
+            <argument>%beelab_phone_verification.layout%</argument>
+            <tag name="twig.extension" />
+        </service>
+    </services>
+
+</container>

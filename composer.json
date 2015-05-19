@@ -1,0 +1,35 @@
+{
+    "name": "beelab/phone-verification-bundle",
+    "type": "symfony-bundle",
+    "description": "Simple phone verification for Symfony",
+    "keywords": ["phone", "verification", "confirmation"],
+    "homepage": "https://bee-lab.net",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Massimiliano Arione ",
+            "email": "massimiliano.arione@bee-lab.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "~2.3",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "sensio/framework-extra-bundle": ">=2.3.0,<4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "suggest": {
+        "zen/skebby": "Skebby adapter"
+    },
+    "autoload": {
+        "psr-4": { "Beelab\\PhoneVerificationBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0-dev"
+        }
+    }
+}
