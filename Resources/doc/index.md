@@ -13,7 +13,7 @@ Setup
 
 Add ``new Beelab\PhoneVerificationBundle\BeelabPhoneVerificationBundle()`` in your ``AppKernel.php``.
 
-Create a ``Phone`` entity that exteands ``Beelab\PhoneVerificationBundle\Entity`` and put in your main configuration:
+Create a ``Phone`` entity that extends ``Beelab\PhoneVerificationBundle\Entity`` and put in your main configuration:
 
 ```yaml
 # /app/config/config.yml
@@ -28,4 +28,4 @@ Adapters
 
 Currently, the only supported adapter is Skebby.
 
-See ``https://bitbucket.org/vittorezen/skebby-bundle`` for more informations on how install and setup that bundle.
+See [Skebby bundle](https://bitbucket.org/vittorezen/skebby-bundle) for more informations on how install and setup that bundle.
