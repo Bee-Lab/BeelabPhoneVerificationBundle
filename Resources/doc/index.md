@@ -33,9 +33,18 @@ See [Skebby bundle](https://bitbucket.org/vittorezen/skebby-bundle) for more inf
 Events
 ------
 
-Currently, there is one event dispatched: ``beelab_phone_verification.phone_creation``. This event receives a
-``PhoneEvent`` event, and you can listen to it to manipulate the ``Phone`` object just after its creation (and before
-flushing).
+#### Phone creation
+
+The event ``beelab_phone_verification.phone_creation`` receives a ``PhoneEvent`` event, and you can listen to it
+to manipulate the ``Phone`` object just after its creation (and before flushing).
 
 For example, suppose you want to relate ``Phone`` with your ``User`` entity. You can add a ``$user`` property in your
 ``Phone`` entity, then listen to `beelab_phone_verification.phone_creation`` and set ``$user`` to current user.
+
+#### SMS error
+
+The event ``beelab_phone_verification.sms_error`` receives a ``SMSEvent`` event, and you can listen to it
+to do some actions when SMS sending fails. The relevant exception is attached to this event.
+
+For example, you could listen to ``beelab_phone_verification.sms_error`` to send an email each time that an SMS is not
+sent (maybe it could be caused by zero credit remaining in your SMS service).

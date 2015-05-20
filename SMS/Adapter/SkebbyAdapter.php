@@ -2,6 +2,7 @@
 
 namespace Beelab\PhoneVerificationBundle\SMS\Adapter;
 
+use Beelab\PhoneVerificationBundle\SMS\Exception;
 use Beelab\PhoneVerificationBundle\SMS\SenderInterface;
 use Zen\Bundle\SkebbyBundle\Util\Skebby;
 
@@ -28,6 +29,9 @@ class SkebbyAdapter implements SenderInterface
      */
     public function send($recipient, $text)
     {
-        return $this->skebby->sendSMS([$recipient], $text);
+        $array = $this->skebby->sendSMS([$recipient], $text);
+        if ($this->skebby->isResultError($array)) {
+            throw new Exception($this->skebby->getResultErrorMessage($array));
+        }
     }
 }

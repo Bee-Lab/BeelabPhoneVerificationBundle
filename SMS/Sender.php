@@ -23,6 +23,6 @@ class Sender
      */
     public function send($recipient, $text)
     {
-        return $this->adapter->send($recipient, $text);
+        $this->adapter->send($recipient, $text);
     }
 }

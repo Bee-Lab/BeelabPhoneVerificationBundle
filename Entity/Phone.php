@@ -44,7 +44,7 @@ abstract class Phone
     /**
      * @var bool
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default": 0})
      */
     protected $verified = false;
 

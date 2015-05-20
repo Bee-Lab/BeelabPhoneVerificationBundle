@@ -3,8 +3,11 @@
 namespace Beelab\PhoneVerificationBundle\Controller;
 
 use Beelab\PhoneVerificationBundle\Event\PhoneEvent;
+use Beelab\PhoneVerificationBundle\Event\SMSEvent;
+use Beelab\PhoneVerificationBundle\SMS\Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
 class VerificationController extends Controller
@@ -20,9 +23,14 @@ class VerificationController extends Controller
             $phone = $this->get('beelab_phone_verification.manager.phone')->create($data['number']);
             $this->get('event_dispatcher')->dispatch('beelab_phone_verification.phone_creation', new PhoneEvent($phone));
             $this->get('beelab_phone_verification.manager.phone')->flush();
-            $this->get('beelab_phone_verification.sender')->send($data['number'], $phone->getCodeMessage());
+            try {
+                $this->get('beelab_phone_verification.sender')->send($data['number'], $phone->getCodeMessage());
 
-            return $this->redirect($this->generateUrl('beelab_phone_verification_code', ['number' => $data['number']]));
+                return $this->redirect($this->generateUrl('beelab_phone_verification_code', ['number' => $data['number']]));
+            } catch (Exception $e) {
+                $form->addError(new FormError('Errore di invio SMS.'));
+                $this->get('event_dispatcher')->dispatch('beelab_phone_verification.sms_error', new SMSEvent($e));
+            }
         }
 
         return $this->render('BeelabPhoneVerificationBundle:verification:phone.html.twig', [
