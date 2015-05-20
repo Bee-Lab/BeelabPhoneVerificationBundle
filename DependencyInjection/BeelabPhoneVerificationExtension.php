@@ -29,6 +29,7 @@ class BeelabPhoneVerificationExtension extends Extension
         $container->setParameter('beelab_phone_verification.layout', $config['layout']);
         $container->setParameter('beelab_phone_verification.code_form_type', $config['code_form_type']);
         $container->setParameter('beelab_phone_verification.phone_form_type', $config['phone_form_type']);
+        $container->setParameter('beelab_phone_verification.phone_number_regex', $config['phone_number_regex']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');

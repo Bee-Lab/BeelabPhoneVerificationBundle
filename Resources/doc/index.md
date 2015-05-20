@@ -23,6 +23,16 @@ beelab_phone_verification:
     layout:      layout.html.twig
 ```
 
+You can optionally specify the format of phone number, as a regular expression. The default expression is
+``/^[0-9]{6,17}$/``, that allows for any number long between 6 and 17.
+In the following example, only numbers starting with 393 (Italian mobile numbers) are allowed.
+
+```yaml
+# /app/config/config.yml
+beelab_phone_verification:
+    phone_number_regex: "^393[0-9]{8,9}$"
+```
+
 Adapters
 --------
 

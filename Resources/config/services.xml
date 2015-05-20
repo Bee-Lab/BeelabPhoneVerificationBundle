@@ -16,6 +16,7 @@
             <tag name="form.type" alias="beelab_verify_code" />
         </service>
         <service id="beelab_phone_verification.form_type.phone" class="%beelab_phone_verification.phone_form_type%">
+            <argument>%beelab_phone_verification.phone_number_regex%</argument>
             <tag name="form.type" alias="beelab_verify_phone" />
         </service>
         <service id="beelab_phone_verification.manager.phone" class="%beelab_phone_verification.manager.phone_class%">
