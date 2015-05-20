@@ -2,6 +2,7 @@
 
 namespace Beelab\PhoneVerificationBundle\Controller;
 
+use Beelab\PhoneVerificationBundle\Event\PhoneEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,8 @@ class VerificationController extends Controller
         if ($form->handleRequest($request)->isValid()) {
             $data = $form->getData();
             $phone = $this->get('beelab_phone_verification.manager.phone')->create($data['number']);
+            $this->get('event_dispatcher')->dispatch('beelab_phone_verification.phone_creation', new PhoneEvent($phone));
+            $this->get('beelab_phone_verification.manager.phone')->flush();
             $this->get('beelab_phone_verification.sender')->send($data['number'], $phone->getCodeMessage());
 
             return $this->redirect($this->generateUrl('beelab_phone_verification_code', ['number' => $data['number']]));

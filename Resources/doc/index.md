@@ -29,3 +29,13 @@ Adapters
 Currently, the only supported adapter is Skebby.
 
 See [Skebby bundle](https://bitbucket.org/vittorezen/skebby-bundle) for more informations on how install and setup that bundle.
+
+Events
+------
+
+Currently, there is one event dispatched: ``beelab_phone_verification.phone_creation``. This event receives a
+``PhoneEvent`` event, and you can listen to it to manipulate the ``Phone`` object just after its creation (and before
+flushing).
+
+For example, suppose you want to relate ``Phone`` with your ``User`` entity. You can add a ``$user`` property in your
+``Phone`` entity, then listen to `beelab_phone_verification.phone_creation`` and set ``$user`` to current user.

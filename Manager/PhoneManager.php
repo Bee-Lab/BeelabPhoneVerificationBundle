@@ -90,10 +90,15 @@ class PhoneManager
         } else {
             $phone->instance($number);
         }
-        if ($andFlush) {
-            $this->manager->flush();
-        }
 
         return $phone;
+    }
+
+    /**
+     * Flush.
+     */
+    public function flush()
+    {
+        $this->manager->flush();
     }
 }
