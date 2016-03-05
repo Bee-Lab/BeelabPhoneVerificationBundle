@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('adapter')
                     ->isRequired()
                     ->validate()
-                    ->ifNotInArray(array('skebby'))
+                    ->ifNotInArray(['skebby'])
                         ->thenInvalid('Invalid value "%s"')
                     ->end()
                 ->end()

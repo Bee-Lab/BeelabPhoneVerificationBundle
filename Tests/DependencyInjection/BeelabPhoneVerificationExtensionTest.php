@@ -12,7 +12,7 @@ class BeelabPhoneVerificationExtensionTest extends PHPUnit_Framework_TestCase
         $container = $this->getMockBuilder('Symfony\\Component\\DependencyInjection\\ContainerBuilder')->disableOriginalConstructor()->getMock();
         $extension = $this->getMockBuilder('Beelab\\PhoneVerificationBundle\\DependencyInjection\\BeelabPhoneVerificationExtension')->getMock();
 
-        $extension->load(array(array()), $container);
+        $extension->load([[]], $container);
     }
 
     public function testLoadSetParameters()
@@ -25,16 +25,16 @@ class BeelabPhoneVerificationExtensionTest extends PHPUnit_Framework_TestCase
         $container->expects($this->any())->method('getParameterBag')->will($this->returnValue($parameterBag));
 
         $extension = new BeelabPhoneVerificationExtension();
-        $configs = array(
-            array('adapter' => 'skebby'),
-            array('phone_class' => 'foo'),
-            array('phone_manager_class' => 'foo'),
-            array('success_route' => 'foo'),
-            array('code_form_type' => 'foo'),
-            array('phone_form_type' => 'foo'),
-            array('phone_number_regex' => '/[\d]+/'),
-            array('layout' => 'bar'),
-        );
+        $configs = [
+            ['adapter' => 'skebby'],
+            ['phone_class' => 'foo'],
+            ['phone_manager_class' => 'foo'],
+            ['success_route' => 'foo'],
+            ['code_form_type' => 'foo'],
+            ['phone_form_type' => 'foo'],
+            ['phone_number_regex' => '/[\d]+/'],
+            ['layout' => 'bar'],
+        ];
         $extension->load($configs, $container);
     }
 }

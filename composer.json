@@ -7,7 +7,7 @@
     "license": "LGPL-3.0",
     "authors": [
         {
-            "name": "Massimiliano Arione ",
+            "name": "Massimiliano Arione",
             "email": "massimiliano.arione@bee-lab.net"
         }
     ],
@@ -16,7 +16,7 @@
         "symfony/symfony": "~2.3",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
-        "sensio/framework-extra-bundle": ">=2.3.0,<4"
+        "sensio/framework-extra-bundle": "~2.3|~3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"

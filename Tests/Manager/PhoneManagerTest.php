@@ -30,7 +30,7 @@ class PhoneManagerTest extends PHPUnit_Framework_TestCase
     public function testFind()
     {
         $phone = new PhoneStub(1234567);
-        $this->repository->expects($this->any())->method('__call')->with('findOneByNumber', array('1234567'))
+        $this->repository->expects($this->any())->method('__call')->with('findOneByNumber', ['1234567'])
             ->will($this->returnValue($phone));
 
         $this->assertEquals($phone, $this->manager->find('1234567'));
@@ -40,7 +40,7 @@ class PhoneManagerTest extends PHPUnit_Framework_TestCase
     public function testVerifyFailure()
     {
         $phone = new PhoneStub(1234567);
-        $this->repository->expects($this->any())->method('__call')->with('findOneByNumber', array('1234567'))
+        $this->repository->expects($this->any())->method('__call')->with('findOneByNumber', ['1234567'])
             ->will($this->returnValue($phone));
 
         $this->assertFalse($this->manager->verify(1234567, 987));
@@ -58,7 +58,7 @@ class PhoneManagerTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $phone = new PhoneStub(1234567);
-        $this->repository->expects($this->any())->method('__call')->with('findOneByNumber', array('1234567'))
+        $this->repository->expects($this->any())->method('__call')->with('findOneByNumber', ['1234567'])
             ->will($this->returnValue($phone));
 
         $this->assertEquals($phone, $this->manager->create('1234567'));
