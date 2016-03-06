@@ -27,9 +27,9 @@ class VerifyPhoneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('number', 'text', [
+            ->add('number', $this->isLegacy() ? 'text' : 'Symfony\Component\Form\Extension\Core\Type\TextType', [
                 'constraints' => [new Constraints\NotBlank(), new Constraints\Regex(['pattern' => $this->regex])],
-                'attr'        => ['maxlength' => 16],
+                'attr' => ['maxlength' => 16],
             ])
         ;
     }
@@ -37,8 +37,24 @@ class VerifyPhoneType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
+
+    /**
+     * BC for Symfony < 3.0.
+     */
     public function getName()
     {
         return 'beelab_verify_phone';
+    }
+
+    /**
+     * @return bool
+     */
+    private function isLegacy()
+    {
+        return !method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix');
     }
 }

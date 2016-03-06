@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 abstract class Phone
 {
-    const VERIFY_STARTED  = 1;
+    const VERIFY_STARTED = 1;
     const VERIFY_FINISHED = 2;
 
     /**

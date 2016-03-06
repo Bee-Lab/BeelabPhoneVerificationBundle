@@ -56,7 +56,7 @@ class VerificationController extends Controller
         }
 
         return $this->render('BeelabPhoneVerificationBundle:verification:code.html.twig', [
-            'form'  => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 }

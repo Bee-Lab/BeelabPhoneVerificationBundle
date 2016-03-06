@@ -5,7 +5,7 @@ namespace Beelab\PhoneVerificationBundle\Test;
 use Beelab\PhoneVerificationBundle\Entity\Phone;
 
 /**
- * PhoneStub
+ * PhoneStub.
  */
 class PhoneStub extends Phone
 {
